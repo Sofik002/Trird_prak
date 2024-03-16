@@ -53,8 +53,10 @@ class _UserPanelState extends State<UserPanel> {
                   ),
                   Padding(padding: EdgeInsets.only(left: 20),),
                   Text('Лайки: $_likes',style: TextStyle(fontSize: 24),),
-                  Padding(padding: EdgeInsets.only(left: 20),),
+                  Padding(padding: EdgeInsets.only(bottom: 10),),
                   OutlinedButton.icon(label: Text('Нажми'),onPressed:() {setState(() {_likes++;});},icon: Icon(Icons.heart_broken)),
+                  Padding(padding: EdgeInsets.only(bottom: 10),),
+                  ElevatedButton(child: const Text("Перейти в профиль"),onPressed: (){Navigator.push(context,MaterialPageRoute(builder: (context)=> const Account()));},),
                 ],
               )
             ],
@@ -63,4 +65,40 @@ class _UserPanelState extends State<UserPanel> {
     );
   }
 }
+class Account extends StatelessWidget {
+  const Account({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Aккаунт'),
+        centerTitle: true,
+        backgroundColor: Colors.pinkAccent,
+      ),
+      body:  SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children:[
+                Padding(padding: EdgeInsets.only(top: 40),),
+                Text('УПС, при загрузке страницы возрикла ошибка', style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.pinkAccent
+                ),),
+                Padding(padding: EdgeInsets.only(top: 20),),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Вернутся на главный экран'),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
